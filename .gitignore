@@ -1,0 +1,19 @@
+# Power BI Desktop files
+*.pbix
+
+# Backup files
+*.bak
+
+# Config and temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
