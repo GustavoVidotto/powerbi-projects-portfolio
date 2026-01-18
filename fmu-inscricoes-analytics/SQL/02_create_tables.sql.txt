@@ -1,0 +1,274 @@
+-- DROP SCHEMA analytics;
+
+CREATE SCHEMA analytics AUTHORIZATION postgres;
+
+-- DROP SEQUENCE analytics.dim_candidato_candidato_id_seq;
+
+CREATE SEQUENCE analytics.dim_candidato_candidato_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE analytics.dim_concurso_ingresso_concurso_id_seq;
+
+CREATE SEQUENCE analytics.dim_concurso_ingresso_concurso_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE analytics.dim_curso_curso_id_seq;
+
+CREATE SEQUENCE analytics.dim_curso_curso_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE analytics.dim_etapa_negocio_etapa_id_seq;
+
+CREATE SEQUENCE analytics.dim_etapa_negocio_etapa_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE analytics.dim_executivo_executivo_id_seq;
+
+CREATE SEQUENCE analytics.dim_executivo_executivo_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE analytics.dim_fonte_inscricao_fonte_id_seq;
+
+CREATE SEQUENCE analytics.dim_fonte_inscricao_fonte_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE analytics.dim_forma_ingresso_forma_id_seq;
+
+CREATE SEQUENCE analytics.dim_forma_ingresso_forma_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE analytics.dim_intake_intake_id_seq;
+
+CREATE SEQUENCE analytics.dim_intake_intake_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE analytics.dim_modalidade_modalidade_id_seq;
+
+CREATE SEQUENCE analytics.dim_modalidade_modalidade_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE analytics.dim_polo_polo_id_seq;
+
+CREATE SEQUENCE analytics.dim_polo_polo_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;-- analytics.dim_candidato definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_candidato;
+
+CREATE TABLE analytics.dim_candidato (
+	candidato_id bigserial NOT NULL,
+	nome_contato text NOT NULL,
+	telefone text NULL,
+	CONSTRAINT dim_candidato_pkey PRIMARY KEY (candidato_id),
+	CONSTRAINT uq_candidato UNIQUE (nome_contato, telefone)
+);
+
+
+-- analytics.dim_concurso_ingresso definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_concurso_ingresso;
+
+CREATE TABLE analytics.dim_concurso_ingresso (
+	concurso_id bigserial NOT NULL,
+	concurso_nome text NOT NULL,
+	CONSTRAINT dim_concurso_ingresso_concurso_nome_key UNIQUE (concurso_nome),
+	CONSTRAINT dim_concurso_ingresso_pkey PRIMARY KEY (concurso_id)
+);
+
+
+-- analytics.dim_curso definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_curso;
+
+CREATE TABLE analytics.dim_curso (
+	curso_id bigserial NOT NULL,
+	curso_nome text NOT NULL,
+	CONSTRAINT dim_curso_curso_nome_key UNIQUE (curso_nome),
+	CONSTRAINT dim_curso_pkey PRIMARY KEY (curso_id)
+);
+
+
+-- analytics.dim_etapa_negocio definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_etapa_negocio;
+
+CREATE TABLE analytics.dim_etapa_negocio (
+	etapa_id bigserial NOT NULL,
+	etapa_nome text NOT NULL,
+	CONSTRAINT dim_etapa_negocio_etapa_nome_key UNIQUE (etapa_nome),
+	CONSTRAINT dim_etapa_negocio_pkey PRIMARY KEY (etapa_id)
+);
+
+
+-- analytics.dim_executivo definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_executivo;
+
+CREATE TABLE analytics.dim_executivo (
+	executivo_id bigserial NOT NULL,
+	executivo_nome text NOT NULL,
+	CONSTRAINT dim_executivo_executivo_nome_key UNIQUE (executivo_nome),
+	CONSTRAINT dim_executivo_pkey PRIMARY KEY (executivo_id)
+);
+
+
+-- analytics.dim_fonte_inscricao definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_fonte_inscricao;
+
+CREATE TABLE analytics.dim_fonte_inscricao (
+	fonte_id bigserial NOT NULL,
+	fonte_nome text NOT NULL,
+	CONSTRAINT dim_fonte_inscricao_fonte_nome_key UNIQUE (fonte_nome),
+	CONSTRAINT dim_fonte_inscricao_pkey PRIMARY KEY (fonte_id)
+);
+
+
+-- analytics.dim_forma_ingresso definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_forma_ingresso;
+
+CREATE TABLE analytics.dim_forma_ingresso (
+	forma_id bigserial NOT NULL,
+	forma_nome text NOT NULL,
+	CONSTRAINT dim_forma_ingresso_forma_nome_key UNIQUE (forma_nome),
+	CONSTRAINT dim_forma_ingresso_pkey PRIMARY KEY (forma_id)
+);
+
+
+-- analytics.dim_intake definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_intake;
+
+CREATE TABLE analytics.dim_intake (
+	intake_id bigserial NOT NULL,
+	intake_nome text NOT NULL,
+	CONSTRAINT dim_intake_intake_nome_key UNIQUE (intake_nome),
+	CONSTRAINT dim_intake_pkey PRIMARY KEY (intake_id)
+);
+
+
+-- analytics.dim_modalidade definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_modalidade;
+
+CREATE TABLE analytics.dim_modalidade (
+	modalidade_id bigserial NOT NULL,
+	modalidade_nome text NOT NULL,
+	CONSTRAINT dim_modalidade_modalidade_nome_key UNIQUE (modalidade_nome),
+	CONSTRAINT dim_modalidade_pkey PRIMARY KEY (modalidade_id)
+);
+
+
+-- analytics.dim_polo definição
+
+-- Drop table
+
+-- DROP TABLE analytics.dim_polo;
+
+CREATE TABLE analytics.dim_polo (
+	polo_id bigserial NOT NULL,
+	codigo_lyceum text NOT NULL,
+	unidade_polo_nome text NOT NULL,
+	CONSTRAINT dim_polo_codigo_lyceum_key UNIQUE (codigo_lyceum),
+	CONSTRAINT dim_polo_pkey PRIMARY KEY (polo_id)
+);
+
+
+-- analytics.fato_inscricao definição
+
+-- Drop table
+
+-- DROP TABLE analytics.fato_inscricao;
+
+CREATE TABLE analytics.fato_inscricao (
+	registro_id int8 NOT NULL,
+	data_criacao date NOT NULL,
+	candidato_id int8 NOT NULL,
+	fonte_id int8 NULL,
+	polo_id int8 NULL,
+	etapa_id int8 NULL,
+	concurso_id int8 NULL,
+	intake_id int8 NULL,
+	modalidade_id int8 NULL,
+	curso_id int8 NULL,
+	forma_id int8 NULL,
+	executivo_id int8 NULL,
+	reaproveitamento bool DEFAULT false NOT NULL,
+	created_at timestamp DEFAULT now() NOT NULL,
+	CONSTRAINT fato_inscricao_pkey PRIMARY KEY (registro_id),
+	CONSTRAINT fato_inscricao_candidato_id_fkey FOREIGN KEY (candidato_id) REFERENCES analytics.dim_candidato(candidato_id),
+	CONSTRAINT fato_inscricao_concurso_id_fkey FOREIGN KEY (concurso_id) REFERENCES analytics.dim_concurso_ingresso(concurso_id),
+	CONSTRAINT fato_inscricao_curso_id_fkey FOREIGN KEY (curso_id) REFERENCES analytics.dim_curso(curso_id),
+	CONSTRAINT fato_inscricao_etapa_id_fkey FOREIGN KEY (etapa_id) REFERENCES analytics.dim_etapa_negocio(etapa_id),
+	CONSTRAINT fato_inscricao_executivo_id_fkey FOREIGN KEY (executivo_id) REFERENCES analytics.dim_executivo(executivo_id),
+	CONSTRAINT fato_inscricao_fonte_id_fkey FOREIGN KEY (fonte_id) REFERENCES analytics.dim_fonte_inscricao(fonte_id),
+	CONSTRAINT fato_inscricao_forma_id_fkey FOREIGN KEY (forma_id) REFERENCES analytics.dim_forma_ingresso(forma_id),
+	CONSTRAINT fato_inscricao_intake_id_fkey FOREIGN KEY (intake_id) REFERENCES analytics.dim_intake(intake_id),
+	CONSTRAINT fato_inscricao_modalidade_id_fkey FOREIGN KEY (modalidade_id) REFERENCES analytics.dim_modalidade(modalidade_id),
+	CONSTRAINT fato_inscricao_polo_id_fkey FOREIGN KEY (polo_id) REFERENCES analytics.dim_polo(polo_id)
+);
+CREATE INDEX ix_fato_curso ON analytics.fato_inscricao USING btree (curso_id);
+CREATE INDEX ix_fato_data ON analytics.fato_inscricao USING btree (data_criacao);
+CREATE INDEX ix_fato_etapa ON analytics.fato_inscricao USING btree (etapa_id);
+CREATE INDEX ix_fato_exec ON analytics.fato_inscricao USING btree (executivo_id);
+CREATE INDEX ix_fato_modalidade ON analytics.fato_inscricao USING btree (modalidade_id);
+CREATE INDEX ix_fato_polo ON analytics.fato_inscricao USING btree (polo_id);
