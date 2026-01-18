@@ -11,3 +11,9 @@ utilizando SQL, modelagem dimensional e métricas de negócio.
   - Métricas DAX e dashboards interativos
 
 📊 Ferramentas: Power BI, PostgreSQL, DAX, SQL
+
+## 🛠️ Tecnologias Utilizadas
+- PostgreSQL
+- Power BI Desktop
+- SQL
+- DAX
